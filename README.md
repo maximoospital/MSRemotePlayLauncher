@@ -1,2 +1,3 @@
-# MSRemotePlayLauncher
- Maxi's Steam Remote Play Launcher
+# msremoteplaylauncher
+
+A new Flutter project.

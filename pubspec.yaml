@@ -1,0 +1,26 @@
+name: msremoteplaylauncher
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  window_manager: ^0.3.9
+  path_provider: any
+  url_launcher: any
+  file_picker: any
+  introduction_screen: ^3.1.0
+  font_awesome_flutter: ^9.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  assets:
+    - assets/nwreplacement/
