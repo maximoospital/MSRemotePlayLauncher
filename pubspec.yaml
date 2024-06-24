@@ -27,4 +27,3 @@ flutter:
   assets:
     - assets/nw.zip
     - assets/b2exe.exe
-    - assets/b2exe64.exe

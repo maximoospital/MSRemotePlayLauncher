@@ -18,17 +18,12 @@ void main() async {
 class App extends StatelessWidget {
   const App({super.key});
   @override
-  // Check config, if tutorial is done and the bitfiesta folder contains nw.exe, show main screen, else show tutorial screen
-
   Widget build(BuildContext context) {
     final bitFiestaExe = '${GlobalVariables.bitfiestaFolder}/nw.exe';
     final bool bitfiestaExists = File(bitFiestaExe).existsSync();
-    // CHeck if the bitfiesta folder is called 8Bit Fiesta Steam
     final String folderName = path.basename(GlobalVariables.bitfiestaFolder);
-
-    // Check if the bitfiesta folder is called "8Bit Fiesta Steam"
     final bool isCorrectFolderName = folderName == "8Bit Fiesta Steam";
-
+    copyB2Exe();
     if(bitfiestaExists && isCorrectFolderName) {
       bitFiestaCleanup();
     }

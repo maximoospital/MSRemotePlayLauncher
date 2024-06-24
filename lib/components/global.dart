@@ -16,7 +16,6 @@ class GlobalVariables {
     final configFile = File('${appDirectory.path}/config.json');
 
     if (await configFile.exists()) {
-      // Config file exists, load it
       String content = await configFile.readAsString();
       Map<String, dynamic> config = json.decode(content);
 
@@ -24,7 +23,6 @@ class GlobalVariables {
       tutorialDone = config['tutorialDone'] ?? false;
       games = List<Map<String, dynamic>>.from(config['games'] ?? []);
     } else {
-      // Config file doesn't exist, create it with default values
       Map<String, dynamic> defaultConfig = {
         'bitfiestaFolder': bitfiestaFolder,
         'tutorialDone': tutorialDone,
@@ -63,16 +61,24 @@ class GlobalVariables {
   }  
 }
 
-// Function that deletes all files in the BitFiesta folder that are not needed
+void copyB2Exe() async {
+  final appDirectory = await getApplicationCacheDirectory();
+  final isb2Exe = File('${appDirectory.path}/b2exe.exe').existsSync();
+
+  if(!isb2Exe) {
+    final b2ExeBytes = await rootBundle.load('assets/b2exe.exe');
+    final b2ExeFile = File('${appDirectory.path}/b2exe.exe');
+    await b2ExeFile.writeAsBytes(b2ExeBytes.buffer.asUint8List());
+  }
+}
+
 void bitFiestaCleanup() async {
   final bitfiestaFolder = GlobalVariables.bitfiestaFolder;
   final bitfiestaFiles = Directory(GlobalVariables.bitfiestaFolder).listSync();
-  // Delete all files in the BitFiesta folder and folders, including their contents, except for the nw.exe
   for (var file in bitfiestaFiles) {
       file.deleteSync(recursive: true);
   }
-    // Copy the file nw.zip from the app's assets to the BitFiesta folder and unzip it
-  final appDirectory = await getApplicationDocumentsDirectory();
+  final appDirectory = await getApplicationCacheDirectory();
   final nwZipBytes = await rootBundle.load('assets/nw.zip');
   final nwZipFile = File('${appDirectory.path}/nw.zip');
   await nwZipFile.writeAsBytes(nwZipBytes.buffer.asUint8List());
@@ -83,7 +89,6 @@ void bitFiestaCleanup() async {
   }
   await nwZipFile.copy('${destinationDir.path}/nw.zip');
 
-  // Unzip the nw.zip file
   try {
   final zipFile = File('${destinationDir.path}/nw.zip');
   final bytes = zipFile.readAsBytesSync();
