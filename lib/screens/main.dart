@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:archive/archive_io.dart';
-import 'package:flutter/services.dart';
 import '../components/global.dart';
 
 class Main extends StatefulWidget {
+  const Main({super.key});
+
   @override
   MainScreen createState() => MainScreen();
 }
@@ -36,14 +31,14 @@ class MainScreen extends State<Main> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(child: const Text("No games added yet."), margin: EdgeInsets.only(bottom: 15.0)),
+                  Container(margin: const EdgeInsets.only(bottom: 15.0), child: const Text("No games added yet.")),
                   ElevatedButton(
                     onPressed: () {
                       // Add a game
                     },
-                    child: const Text("Add a game"),
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(200, 50),)
+                      fixedSize: const Size(200, 50),),
+                    child: const Text("Add a game")
                   ),
                 ],
               )

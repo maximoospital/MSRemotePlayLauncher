@@ -42,10 +42,10 @@ class App extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       routes: {
-        '/tutorial': (context) => Tutorial(),
-        '/error': (context) => Error(),
-        '/main': (context) => Main(),
-        '/config': (context) => Config(),
+        '/tutorial': (context) => const Tutorial(),
+        '/error': (context) => const Error(),
+        '/main': (context) => const Main(),
+        '/config': (context) => const Config(),
       },
     );
   }

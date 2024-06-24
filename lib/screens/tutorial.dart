@@ -8,6 +8,8 @@ import '../components/global.dart';
 import 'package:path/path.dart' as path;
 
 class Tutorial extends StatefulWidget {
+  const Tutorial({super.key});
+
   @override
   TutorialScreen createState() => TutorialScreen();
 

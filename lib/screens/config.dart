@@ -7,6 +7,8 @@ import '../components/global.dart';
 import 'package:path/path.dart' as path;
 
 class Config extends StatefulWidget {
+  const Config({super.key});
+
   @override
   ConfigScreen createState() => ConfigScreen();
 }

@@ -17,6 +17,7 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   archive: any
 
+  path: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

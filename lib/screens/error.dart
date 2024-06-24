@@ -7,6 +7,8 @@ import '../components/global.dart';
 import 'package:path/path.dart' as path;
 
 class Error extends StatefulWidget {
+  const Error({super.key});
+
   @override
   ErrorScreen createState() => ErrorScreen();
 
