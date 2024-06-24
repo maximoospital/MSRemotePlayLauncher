@@ -15,6 +15,7 @@ dependencies:
   file_picker: any
   introduction_screen: ^3.1.0
   font_awesome_flutter: ^9.0.0
+  archive: any
 
 dev_dependencies:
   flutter_test:
@@ -23,4 +24,6 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/nwreplacement/
+    - assets/nw.zip
+    - assets/b2exe.exe
+    - assets/b2exe64.exe
