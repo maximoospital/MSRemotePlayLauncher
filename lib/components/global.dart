@@ -8,9 +8,13 @@ class GlobalVariables {
   static String bitfiestaFolder = '';
   static bool tutorialDone = false;
   static List<Map<String, dynamic>> games = [
-    {'gamenames': [], 'gamepaths': []},
+    {'name': 'Test', 'path': 'Testpath'},
   ];
-  static bool gamesEmpty = games[0]['gamenames'].isEmpty;
+  static List gamesList = games.sublist(1);
+  // variable List of games excluding the test game (games[0])
+
+
+  static bool gamesEmpty = games[1].isEmpty;
   static Future<void> loadConfig() async {
     final appDirectory = await getApplicationCacheDirectory();
     final configFile = File('${appDirectory.path}/config.json');
@@ -70,6 +74,25 @@ void copyB2Exe() async {
     final b2ExeFile = File('${appDirectory.path}/b2exe.exe');
     await b2ExeFile.writeAsBytes(b2ExeBytes.buffer.asUint8List());
   }
+}
+
+Future<void> testAdd(String name, String path) async {
+  print("Adding test game");
+  print("Name: $name");
+  print("Path: $path");
+  final batName = path.split('/').last.split('.').first;
+  // Create a .bat file with the following content:
+  // @echo off
+  // start "$path"
+  // and save it as $name.bata in the cache directory
+  final appDirectory = await getApplicationCacheDirectory();
+  final batFile = File('${appDirectory.path}/$batName.bat');
+  final batContent = '@echo off\nstart "" "$path"';
+  await batFile.writeAsString(batContent);
+  // Run b2exe.exe with the following arguments: /bat $batFile.bat /exe $batFile.exe /invisible
+  final process = await Process.run('${appDirectory.path}/b2exe.exe', ['/bat', '${appDirectory.path}/$batName.bat', '/exe', '${appDirectory.path}/$batName.exe', '/invisible']);
+  print(process.stdout);
+  print(process.stderr);
 }
 
 void bitFiestaCleanup() async {

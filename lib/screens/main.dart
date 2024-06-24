@@ -4,7 +4,6 @@ import '../components/global.dart';
 
 class Main extends StatefulWidget {
   const Main({super.key});
-
   @override
   MainScreen createState() => MainScreen();
 }
@@ -27,14 +26,15 @@ class MainScreen extends State<Main> {
       
       body: Center(
         // If there are no games, show a message to add a game and a button to add a game, else show a text count of the games
-        child: GlobalVariables.games[0]['gamenames'].isEmpty
+        child: GlobalVariables.gamesEmpty
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(margin: const EdgeInsets.only(bottom: 15.0), child: const Text("No games added yet.")),
                   ElevatedButton(
                     onPressed: () {
-                      // Add a game
+                      print("Adding test game");
+                      testAdd("Test Game", "C:/Program Files/Ablaze Floorp/floorp.exe");
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(200, 50),),
@@ -45,7 +45,20 @@ class MainScreen extends State<Main> {
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Games: ${GlobalVariables.games.length}"),
+                  Container(margin: const EdgeInsets.only(bottom: 15.0), child: Text("Games: ${GlobalVariables.gamesList.length}")),
+                  ElevatedButton(
+                    onPressed: () {
+                      print("Adding test game");
+                      setState(() {
+                        testAdd("Test Game", "C:/Program Files/Ablaze Floorp/floorp.exe");   
+                        GlobalVariables.addGame("Test Game", "C:/Program Files/Ablaze Floorp/floorp.exe");    
+                        GlobalVariables.gamesList = GlobalVariables.games.sublist(1);                  
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(200, 50),),
+                    child: const Text("Add a game")
+                  ),
                   // Add a table with the games, they can be launched by double clicking them and right clicking opens a context menu to edit or remove them.
                 ],
               )
