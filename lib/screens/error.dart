@@ -75,9 +75,9 @@ class ErrorScreen extends State<Error> {
         final bool bitfiestaExists = File(exeBitfiesta).existsSync();
         if(bitfiestaExists) {
           await GlobalVariables.editConfig(GlobalVariables.bitfiestaFolder, true);
-          Navigator.pushReplacementNamed(context, '/main');
+          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
         } else {
-          Navigator.pushReplacementNamed(context, '/error');
+          Navigator.pushNamedAndRemoveUntil(context, '/error', (route) => false);
         }
       },
       showSkipButton: false,

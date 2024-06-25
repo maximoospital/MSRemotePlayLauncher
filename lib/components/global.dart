@@ -10,11 +10,10 @@ class GlobalVariables {
   static List<Map<String, dynamic>> games = [
     {'name': 'Test', 'path': 'Testpath'},
   ];
-  static List gamesList = games.sublist(1);
-  // variable List of games excluding the test game (games[0])
+  static bool get gamesEmpty => games.length == 1;
+  static List<Map<String, dynamic>> get gamesList => games.sublist(1);
+  static int index = 0;
 
-
-  static bool gamesEmpty = games[1].isEmpty;
   static Future<void> loadConfig() async {
     final appDirectory = await getApplicationCacheDirectory();
     final configFile = File('${appDirectory.path}/config.json');
@@ -76,23 +75,13 @@ void copyB2Exe() async {
   }
 }
 
-Future<void> testAdd(String name, String path) async {
-  print("Adding test game");
-  print("Name: $name");
-  print("Path: $path");
-  final batName = path.split('/').last.split('.').first;
-  // Create a .bat file with the following content:
-  // @echo off
-  // start "$path"
-  // and save it as $name.bata in the cache directory
+Future<void> testAdd(String name, String gamepath) async {
+  final batName = gamepath.split('/').last.split('.').first;
   final appDirectory = await getApplicationCacheDirectory();
-  final batFile = File('${appDirectory.path}/$batName.bat');
-  final batContent = '@echo off\nstart "" "$path"';
+  final batFile = File('${appDirectory.path}/$name.$batName.bat');
+  final batContent = '@echo off\nstart "" "$gamepath"';
   await batFile.writeAsString(batContent);
-  // Run b2exe.exe with the following arguments: /bat $batFile.bat /exe $batFile.exe /invisible
-  final process = await Process.run('${appDirectory.path}/b2exe.exe', ['/bat', '${appDirectory.path}/$batName.bat', '/exe', '${appDirectory.path}/$batName.exe', '/invisible']);
-  print(process.stdout);
-  print(process.stderr);
+  await Process.run('${appDirectory.path}/b2exe.exe', ['/bat', '${appDirectory.path}/$name.$batName.bat', '/exe', '${appDirectory.path}/$name.$batName.exe', '/invisible']);
 }
 
 void bitFiestaCleanup() async {
@@ -128,7 +117,6 @@ void bitFiestaCleanup() async {
       Directory('${destinationDir.path}/$filename').create(recursive: true);
     }
   }
-  print('Unzip successful');
 } catch (e) {
   print('Failed to unzip: $e');
 }

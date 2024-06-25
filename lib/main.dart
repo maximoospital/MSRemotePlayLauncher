@@ -6,6 +6,8 @@ import 'screens/config.dart';
 import 'screens/error.dart';
 import 'screens/main.dart';
 import 'screens/tutorial.dart';
+import 'screens/add.dart';
+import 'screens/edit.dart';
 import 'package:path/path.dart' as path;
 
 void main() async {
@@ -41,6 +43,8 @@ class App extends StatelessWidget {
         '/error': (context) => const Error(),
         '/main': (context) => const Main(),
         '/config': (context) => const Config(),
+        '/add': (context) => const Add(),
+        '/edit': (context) => const Edit(),
       },
     );
   }

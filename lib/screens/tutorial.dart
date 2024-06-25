@@ -28,7 +28,9 @@ class TutorialScreen extends State<Tutorial> {
         body: "This app uses both Steam and 8 Bit Fiesta.\n If you're here i'm assuming you already have Steam installed though.",
         footer: Container (
           margin: const EdgeInsets.only(left: 220.0, right: 220.0, top: 25.0),
-          child: ElevatedButton(
+          child: Tooltip(
+      message: 'Requires Steam and 200mb of space, which will be shortened to barely 35mb.',
+      child: ElevatedButton(
             onPressed: () async {
               await launchUrl(Uri.parse('steam://install/382260'));
             },
@@ -37,6 +39,9 @@ class TutorialScreen extends State<Tutorial> {
             ),
             child: const Text("Install 8 Bit Fiesta"),
           ),
+        )
+          
+          
         ),
         image: const Center(child: Icon(FontAwesomeIcons.list, size: 50.0)),
       ),
@@ -47,24 +52,28 @@ class TutorialScreen extends State<Tutorial> {
           margin: const EdgeInsets.only(left: 200.0, right: 200.0, top: 25.0),
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: () async {
-                  // Open file picker to select 8 Bit Fiesta's nw.exe
-                  FilePickerResult? result = await FilePicker.platform.pickFiles(
-                    type: FileType.custom,
-                    allowedExtensions: ['exe'],
-                  );
-                  if (result != '') {
-                    setState(() {
-                       GlobalVariables.editConfig(result!.files.single.path!.replaceFirst('nw.exe', ''), false);  
-                    });
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(200, 50),
-                ),
-                child: const Text("Find 8BF's executable.", style: TextStyle(fontSize: 15.0)),
+                Tooltip(
+                  message: 'Usually located in C:/Program Files (x86)/Steam/steamapps/common/8Bit Fiesta Steam/',
+                  child: ElevatedButton(
+                                onPressed: () async {
+                                  // Open file picker to select 8 Bit Fiesta's nw.exe
+                                  FilePickerResult? result = await FilePicker.platform.pickFiles(
+                                    type: FileType.custom,
+                                    allowedExtensions: ['exe'],
+                                  );
+                                  if (result != '') {
+                                    setState(() {
+                                      GlobalVariables.editConfig(result!.files.single.path!.replaceFirst('nw.exe', ''), false);  
+                                    });
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(200, 50),
+                                ),
+                                child: const Text("Find 8BF's executable.", style: TextStyle(fontSize: 15.0)),
+                              ),
               ),
+                    
               Container(
                 margin: const EdgeInsets.only(top: 10.0),
                 child: Text(GlobalVariables.bitfiestaFolder, style: const TextStyle(fontSize: 10.0)),

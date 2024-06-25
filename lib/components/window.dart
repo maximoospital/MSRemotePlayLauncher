@@ -9,7 +9,7 @@ void WindowSetup() async {
     size: Size(800, 600),
     center: true,
     backgroundColor: Colors.transparent,
-    title: "Maxi's Steam Remote Play Launcher",
+    title: "Maxi's Remote Play Launcher",
   );
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {

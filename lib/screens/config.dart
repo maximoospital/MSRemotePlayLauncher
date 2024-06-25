@@ -41,7 +41,9 @@ class ConfigScreen extends State<Config> {
                         Center(
                           child: Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: ElevatedButton(
+                            child: Tooltip( 
+                              message: '500mb required.',
+                              child: ElevatedButton(
                             onPressed: () async {
                               await launchUrl(Uri.parse('https://store.steampowered.com/about/download'));
                             },
@@ -50,12 +52,14 @@ class ConfigScreen extends State<Config> {
                             ),
                             child: const Text("Install Steam"),
                           )
-                          )
+                          ))
                         ),
                         Center(
                           child: Container(
                             margin: const EdgeInsets.only(top: 10.0),
-                            child: ElevatedButton(
+                            child: Tooltip(
+                              message: '200mb required for initial download.',
+                              child: ElevatedButton(
                             onPressed: () async {
                               await launchUrl(Uri.parse('steam://install/382260'));
                             },
@@ -64,6 +68,7 @@ class ConfigScreen extends State<Config> {
                             ),
                             child: const Text("Install 8 Bit Fiesta"),
                           )
+                            )
                           )
                         ),
                       ],)),
