@@ -1,12 +1,15 @@
-<br/>
 <p align="center">
   <a href="https://github.com/maximoospital/MSRemotePlayLauncher">
     <img src="imagenes/logo.png" alt="Logo" width="350" height="111">
   </a>
-
+  <br/>
   <h3 align="center">Maxi's Remote Play Launcher</h3> 
   <h5 align="center">Maximo Ospital, 2024</h5>
   <h3 align="center"><a href="https://github.com/maximoospital/MSRemotePlayLauncher/releases/latest">Download Here!</a></h3>
+  <br/>
+  <a href="https://ko-fi.com/I2I3ZRJ0Q" target="_blank">
+    <img src="https://storage.ko-fi.com/cdn/kofi5.png?v=3" alt="Buy Me a Coffee at ko-fi.com" height="36">
+  </a>
 </p>
 
 ## Table of Contents
