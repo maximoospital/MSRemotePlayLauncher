@@ -48,7 +48,7 @@ Features:
 * [Bat To Exe Converter](http://www.f2ko.de/en/b2e.php)
 ## Getting Started
 
-### Prerequisites for manually building
+### Prerequisites
 - Steam
 
 ### Installation
